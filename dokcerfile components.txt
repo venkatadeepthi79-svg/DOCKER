@@ -1,0 +1,59 @@
+Dockerfile:
+
+ 
+
+it is a set of instructions
+
+it helps to creates the image for my application
+
+It contains some components
+
+ 
+
+FROM : used to define the base images
+
+FROM python
+
+FROM tomcat
+
+FROM mysql
+
+ 
+
+MAINTAINER : it is used to add the author details
+
+LABEL : used to add a description about your image
+
+EXPOSE : it is used to define the container port
+
+ 
+
+COPY : used to copy the files from host to container
+
+ADD : used to copy the files from host to container also it supports URL’s. it will download the files from internet and copies it to container.
+
+ 
+
+WORKDIR : used to set a default path in our container
+
+WORKDIR /mustafa
+
+(or)
+
+WORKDIR /mustafa/flm/devops/
+
+ 
+
+RUN : used to execute the commands while we creating an image
+
+CMD : used to execute the commands after creating the container
+
+ENTRYPOINT : used to execute the commands after creating the container
+
+ 
+
+ 
+
+ARG : it is used to pass the variables - we cant access these values inside the container. We can over write the values in run time.
+
+ENV : it is used to pass the variables - we can access these values inside the container. We cant over write the values in run time.
