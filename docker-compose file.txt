@@ -1,0 +1,46 @@
+services:
+  bus_tickets:
+    container_name: bus_container
+    build : ./bus/
+    ports:
+      - 9000:80
+    networks: 
+      - bus_network
+    volumes:
+      - bus:/opt/deepthi  
+    
+
+
+  movie_tickets:
+    container_name: movie_container
+    build : ./movie/
+    ports:
+      - 8000:80
+    networks:
+      - movie_network
+    volumes:
+      - movie:/opt/jboss  
+     
+
+  flight_tickets:
+    container_name: flight_container
+    build : ./flight/
+    ports:
+      - 1000:80
+    networks:
+      - flight_network
+
+
+
+
+networks:
+  bus_network:
+    driver: bridge
+  flight_network:
+    driver : bridge
+  movie_network:
+    driver : bridge  
+
+volumes:
+  bus:
+  movie:
