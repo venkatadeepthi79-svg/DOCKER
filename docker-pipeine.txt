@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('code') {
+            steps {
+                git 'https://github.com/venkatadeepthi79-svg/Integarting-Docker-with-Jenkins-project.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'docker build -t $imagename dockerproject'
+            }
+            
+        }
+        stage('registry') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'registry') {
+                        sh 'docker tag $imagename venkatadeepthi/dockerproject:$tag'
+                        sh 'docker push venkatadeepthi/dockerproject:$tag'
+                }
+            }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'docker run -itd --name $containername -p $hostport:80 venkatadeepthi/dockerproject:$tag'
+            }
+        }
+    }
+}
